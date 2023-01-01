@@ -17,10 +17,10 @@ public class StringEncryptionApplication {
 
     public static String calcStr() {
 
-        String str = "t1e1s2t, Hell1o, 1th1e, fir2st1 yasoo2222ot yasoo2222ot 11 33 yu2u" ;
+        String str = "t1e1s2t, Hell1o, 1th1e, fir2st1 yasoo22262odt yasoo2222ohhht yu2u ym2u" ;
         String[] splited = str.split("\\s+");
-        Map<String, Integer> myHashMap = new HashMap<>();
-
+       LinkedHashMap<String, Integer> myHashMap = new LinkedHashMap<>();
+        Collections.reverse(Arrays.asList(splited));
 
         for (String strPart : splited) {
             int count = 0;
@@ -29,24 +29,16 @@ public class StringEncryptionApplication {
                     count = count + Integer.parseInt(String.valueOf(strPart.charAt(i)));
                 }
             }
-            myHashMap.put(strPart.replaceAll("[0-9]", "").replaceAll(",", ""), count);
+            if (!myHashMap.containsValue(count)){
+                myHashMap.put(strPart.replaceAll("[0-9]", "").replaceAll(",", ""), count);
+            }
         }
-        Set<String> set = new  HashSet<>();
-
-
-
-        myHashMap = myHashMap.entrySet().stream()
-                .filter(entry -> set.add(String.valueOf(entry.getValue())))
-                .collect(Collectors.toMap(Map.Entry :: getKey ,  Map.Entry :: getValue));
-        System.out.printf("after => " + myHashMap);
-
         StringBuilder sb = new StringBuilder();
         Map<String, Integer> sortedMapAsc = sortByValue(myHashMap, true);
         sortedMapAsc.forEach((key, value) -> sb.append(key + " "));
         System.out.println(sb);
         return str;
     }
-
     private static Map<String, Integer> sortByValue(Map<String, Integer> unsortMap, final boolean order) {
         List<Map.Entry<String, Integer>> list = new LinkedList<>(unsortMap.entrySet());
 
@@ -58,19 +50,5 @@ public class StringEncryptionApplication {
                 : o2.getValue().compareTo(o1.getValue()));
         return list.stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> b, LinkedHashMap::new));
 
-    }
-    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue
-            (Map<K, V> map) {
-
-        return map.entrySet()
-                .stream()
-                .sorted(Map.Entry.<K, V> comparingByValue().reversed())
-                // Type here -----^ reversed() here -------^
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (e1, e2) -> e1,
-                        LinkedHashMap::new
-                ));
     }
 }

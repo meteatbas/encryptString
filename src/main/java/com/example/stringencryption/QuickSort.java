@@ -15,7 +15,6 @@ class QuickSort {
 
     static int partition(int[] arr, int low, int high)
     {
-
         // pivot
         int pivot = arr[high];
 
@@ -43,8 +42,6 @@ class QuickSort {
     {
         if (low < high) {
 
-            // pi is partitioning index, arr[p]
-            // is now at right place
             int pi = partition(arr, low, high);
 
             // Separately sort elements before
@@ -54,7 +51,6 @@ class QuickSort {
         }
     }
 
-    // Function to print an array
     static void printArray(int[] arr, int size)
     {
         for (int i = 0; i < size; i++)

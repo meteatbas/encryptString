@@ -6,17 +6,13 @@ public class SelectionSort
     {
         int n = arr.length;
 
-        // One by one move boundary of unsorted subarray
         for (int i = 0; i < n-1; i++)
         {
-            // Find the minimum element in unsorted array
             int min_idx = i;
             for (int j = i+1; j < n; j++)
                 if (arr[j] < arr[min_idx])
                     min_idx = j;
 
-            // Swap the found minimum element with the first
-            // element
             int temp = arr[min_idx];
             arr[min_idx] = arr[i];
             arr[i] = temp;
@@ -25,7 +21,6 @@ public class SelectionSort
         return arr;
     }
 
-    // Prints the array
     void printArray(int arr[])
     {
         int n = arr.length;
@@ -34,14 +29,13 @@ public class SelectionSort
         System.out.println();
     }
 
-    // Driver code to test above
     public static void main(String args[])
     {
         SelectionSort ob = new SelectionSort();
-        int arr[] = {64,25,12,22,11};
+        int arr[] = {64,25,12,22,11,5,6,7};
         int[] ar= new int[]{};
         ar=ob.selectionSort(arr);
-        System.out.println("Sorted array");
+        System.out.println("Sorted array"+ ar[0]);
         ob.printArray(arr);
     }
 }

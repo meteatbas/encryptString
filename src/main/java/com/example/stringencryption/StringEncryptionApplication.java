@@ -3,7 +3,18 @@ package com.example.stringencryption;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import java.util.LinkedHashMap;
+import java.util.Collections;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
@@ -17,9 +28,9 @@ public class StringEncryptionApplication {
 
     public static String calcStr() {
 
-        String str = "t1e1s2t, Hell1o, 1th1e, fir2st1 yasoo22262odt yasoo2222ohhht yu2u ym2u" ;
+        String str = "t1e1s2t, Hell1o, 1th1e, fir2st1 yasoo22262odt yasoo2222ohhht yu2u ym2u";
         String[] splited = str.split("\\s+");
-       LinkedHashMap<String, Integer> myHashMap = new LinkedHashMap<>();
+        LinkedHashMap<String, Integer> myHashMap = new LinkedHashMap<>();
         Collections.reverse(Arrays.asList(splited));
 
         for (String strPart : splited) {
@@ -29,7 +40,7 @@ public class StringEncryptionApplication {
                     count = count + Integer.parseInt(String.valueOf(strPart.charAt(i)));
                 }
             }
-            if (!myHashMap.containsValue(count)){
+            if (!myHashMap.containsValue(count)) {
                 myHashMap.put(strPart.replaceAll("[0-9]", "").replaceAll(",", ""), count);
             }
         }
@@ -39,6 +50,7 @@ public class StringEncryptionApplication {
         System.out.println(sb);
         return str;
     }
+
     private static Map<String, Integer> sortByValue(Map<String, Integer> unsortMap, final boolean order) {
         List<Map.Entry<String, Integer>> list = new LinkedList<>(unsortMap.entrySet());
 
